@@ -1,15 +1,16 @@
 // disable right click
-(function () {
-  var blockContextMenu, myElement;
+if(typeof debug == 'undefined' || !debug){
+    (function () {
+      var blockContextMenu, myElement;
 
-  blockContextMenu = function (evt) {
-    evt.preventDefault();
-  };
+      blockContextMenu = function (evt) {
+        evt.preventDefault();
+      };
 
-  myElement = document.querySelector('body');
-  myElement.addEventListener('contextmenu', blockContextMenu);
-})();
-
+      myElement = document.querySelector('body');
+      myElement.addEventListener('contextmenu', blockContextMenu);
+    })();
+}
 
 var appBind = function(){
 
@@ -46,7 +47,7 @@ Sammy('#main', function() {
 
         var data = Pyjs.getApps();
         var apps = $.parseJSON(data);
-        console.log(data);
+        //console.log(data);
 
         var result = "";
         for(var category in apps){
