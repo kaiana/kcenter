@@ -1,0 +1,13 @@
+* { font-family: Ubuntu; }
+
+a { outline: 0 !important; }
+
+body { background-color: #eee; }
+
+#main { margin: 25px 10px; }
+
+.app { padding: 5px !important; width: 150px !important; height: 120px !important; text-align: center !important; }
+
+.app .icon img { display: block; margin-left: auto; margin-right: auto; height: 32px; width: 32px; }
+
+.app .ui.dimmer { display: none; }
