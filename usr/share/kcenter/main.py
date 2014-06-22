@@ -60,6 +60,7 @@ if __name__ == "__main__":
 
     # Html and js
     Pyjs = Pyjs()
+    Pyjs.debug = debug
     html = QUrl("file://" + os.getcwd() + "/index.html#/")
 
     # Load html and js
@@ -72,5 +73,6 @@ if __name__ == "__main__":
     # Quit application
     ret = app.exec_()
     # Execute before quit
-    #Pyjs.getApps(cache=False)
+    Pyjs.debug = True
+    Pyjs.getApps()
     sys.exit(ret)
