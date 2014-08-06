@@ -40,5 +40,5 @@ class Pyjs(QObject):
 
 
     @pyqtSlot(str, result=str)
-    def run_kde(self, cmd):
+    def cmd(self, cmd):
         subprocess.Popen(cmd, shell=True, stdin=None, stdout=subprocess.PIPE, stderr=subprocess.PIPE)

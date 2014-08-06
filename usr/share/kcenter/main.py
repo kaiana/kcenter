@@ -12,6 +12,7 @@ from PyQt5.QtCore import QUrl
 from PyQt5.QtCore import QSize
 from xdg.IconTheme import getIconPath
 from utils.pyjs import Pyjs
+from configparser import ConfigParser
 
 # get translations
 gettext.install("kcenter", "/usr/share/locale/kcenter")
@@ -39,8 +40,42 @@ if __name__ == "__main__":
     web.setWindowIcon(icon)
 
 
-    # Center Window
-    web.move(app.desktop().screen().rect().center() - web.rect().center())
+    # Get dimensions from config file
+    config = ConfigParser()
+    configFile = None
+    configFilePath = os.getenv("HOME") + "/.kcenter/conf"
+    width = 800
+    height = 600
+    maximized = False
+    x = y = None
+    if os.path.exists(configFilePath):
+        config.read(configFilePath)
+        width = config.get('window','width') if config.has_option('window','width') else width
+        height = config.get('window','height') if config.has_option('window','height') else height
+        maximized = config.get('window','maximized') if config.has_option('window','maximized') else maximized
+        x = config.get('window','x') if config.has_option('window','x') else x
+        y = config.get('window','y') if config.has_option('window','y') else y
+
+    else:
+        basedir = os.path.dirname(configFilePath)
+        if not os.path.exists(basedir):
+            os.makedirs(basedir)
+        config.add_section('window')
+
+
+    # Define geometry
+    web.resize(int(width), int(height))
+
+    # center window
+    if(x is None or y is None):
+        web.move(app.desktop().screen().rect().center() - web.rect().center())
+    else:
+        web.move(int(x), int(y))
+
+    # Maximize
+    if maximized:
+        web.showMaximized()
+
 
     # Show Debug
     if "--debug" in sys.argv:
@@ -61,7 +96,7 @@ if __name__ == "__main__":
     # Html and js
     Pyjs = Pyjs()
     Pyjs.debug = debug
-    html = QUrl("file://" + os.getcwd() + "/index.html#/")
+    html = QUrl("file://" + os.getcwd() + "/index.html")
 
     # Load html and js
     web.load(html)
@@ -72,7 +107,22 @@ if __name__ == "__main__":
 
     # Quit application
     ret = app.exec_()
-    # Execute before quit
+    ### Execute before quit ###
+
+    # Save window config
+    config.set('window', 'width', str(web.frameGeometry().width()))
+    config.set('window', 'height', str(web.frameGeometry().height()))
+    #config['DEFAULT']['maximized'] = web.frameGeometry().maximized()
+    config.set('window', 'x', str(web.geometry().x()))
+    config.set('window', 'y', str(web.geometry().y()))
+    with open(configFilePath, 'w') as file:
+        config.write(file)
+
+    # Save cache for apps
     Pyjs.debug = True
     Pyjs.getApps()
+
+    ### Execute before quit ###
     sys.exit(ret)
+
+    print(web.windowState())

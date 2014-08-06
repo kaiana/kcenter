@@ -1,4 +1,4 @@
-// disable right click
+// Disable right click
 if(typeof debug == 'undefined' || !debug){
     (function () {
       var blockContextMenu, myElement;
@@ -12,6 +12,7 @@ if(typeof debug == 'undefined' || !debug){
     })();
 }
 
+// Show loader to click on app
 var appBind = function(){
 
     $(".app a").on("click", function(){
@@ -24,7 +25,8 @@ var appBind = function(){
         loader.show();
 
         // execute
-        Pyjs.run_kde("kcmshell4 " + exec);
+        var cmd = "kcmshell4 " + exec;
+        Pyjs.cmd(cmd);
 
         // hide loader
         setTimeout(function(){
@@ -36,48 +38,37 @@ var appBind = function(){
 }
 
 
-// routes
-Sammy('#main', function() {
+// element to add content
+var content = $("#main");
 
-    // element to add content
-    var content = this.$element();
+// get apps
+var data = Pyjs.getApps();
+var apps = $.parseJSON(data);
 
-    // default route
-    this.get('#/', function() {
+var result = "";
+for(var category in apps){
 
-        var data = Pyjs.getApps();
-        var apps = $.parseJSON(data);
-        //console.log(data);
+    result += '<div class="ui raised segment category">' +
+                '<div class="ui ribbon teal label title">' + category + '</div>' +
+                '<br style="clear: both" />';
 
-        var result = "";
-        for(var category in apps){
+    for(var item = 0; item < apps[category].length; item++){
+        var app = apps[category][item];
 
-            result += '<div class="ui raised segment category">' +
-                        '<div class="ui ribbon teal label title">' + category + '</div>' +
-                        '<br style="clear: both" />';
+        result += '<div class="ui basic floated left segment app">' +
+                    '<a href="javascript:;" data-exec="' + app.filename + '">' +
+                        '<div class="icon">' +
+                            '<img src="' + app.icon + '" class="ui image" />' +
+                        '</div>' +
+                        '<div class="name">' + app.name + '</div>' +
+                    '</a>' +
+                    '<div class="ui active inverted dimmer"><div class="ui loader"></div></div>' +
+                  '</div>';
 
-            for(var item = 0; item < apps[category].length; item++){
-                var app = apps[category][item];
+    }
 
-                result += '<div class="ui basic floated left segment app">' +
-                            '<a href="javascript:;" data-exec="' + app.filename + '">' +
-                                '<div class="icon">' +
-                                    '<img src="' + app.icon + '" class="ui image" />' +
-                                '</div>' +
-                                '<div class="name">' + app.name + '</div>' +
-                            '</a>' +
-                            '<div class="ui active inverted dimmer"><div class="ui loader"></div></div>' +
-                          '</div>';
+    result += '</div>';
+}
 
-            }
-
-            result += '</div>';
-        }
-
-        content.append(result);
-        appBind();
-
-    });
-
-
-}).run();
+content.append(result);
+appBind();
