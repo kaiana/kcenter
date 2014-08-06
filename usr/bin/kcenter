@@ -1,4 +1,4 @@
 #!/usr/bin/bash
 
-# Execute APP
-python3 /usr/share/kcenter/main.py
+cd /usr/share/kcenter
+python3 main.py $@
