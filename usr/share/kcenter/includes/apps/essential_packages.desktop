@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Essential Packages
+Name[es]=Essential Packages
+Name[pt]=Essential Packages
+Comment=Essential Packages
+Comment[es]=Essential Packages
+Comment[pt_BR]=Essential Packages
+Exec=command
+Icon=firefox
+Categories=GNOME;GTK;Network;WebBrowser;

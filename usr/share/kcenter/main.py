@@ -44,15 +44,12 @@ if __name__ == "__main__":
     config = ConfigParser()
     configFile = None
     configFilePath = os.getenv("HOME") + "/.kcenter/conf"
-    width = 800
-    height = 600
-    maximized = False
+    width, height = 800, 600
     x = y = None
     if os.path.exists(configFilePath):
         config.read(configFilePath)
         width = config.get('window','width') if config.has_option('window','width') else width
         height = config.get('window','height') if config.has_option('window','height') else height
-        maximized = config.get('window','maximized') if config.has_option('window','maximized') else maximized
         x = config.get('window','x') if config.has_option('window','x') else x
         y = config.get('window','y') if config.has_option('window','y') else y
 
@@ -71,10 +68,6 @@ if __name__ == "__main__":
         web.move(app.desktop().screen().rect().center() - web.rect().center())
     else:
         web.move(int(x), int(y))
-
-    # Maximize
-    if maximized:
-        web.showMaximized()
 
 
     # Show Debug
@@ -112,7 +105,6 @@ if __name__ == "__main__":
     # Save window config
     config.set('window', 'width', str(web.frameGeometry().width()))
     config.set('window', 'height', str(web.frameGeometry().height()))
-    #config['DEFAULT']['maximized'] = web.frameGeometry().maximized()
     config.set('window', 'x', str(web.geometry().x()))
     config.set('window', 'y', str(web.geometry().y()))
     with open(configFilePath, 'w') as file:
