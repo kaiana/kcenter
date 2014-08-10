@@ -30,7 +30,7 @@ for(var category in apps){
     for(var item = 0; item < apps[category].length; item++){
         var app = apps[category][item];
 
-        result += '<div class="ui basic floated left segment app" data-content"' + app.comment + '">' +
+        result += '<div class="ui basic floated left segment app" data-content="' + app.comment + '" data-variation="inverted">' +
                     '<a href="javascript:;" data-execute="' + app.execute + '">' +
                         '<div class="icon">' +
                             '<img src="' + app.icon + '" class="ui image" />' +
@@ -46,6 +46,10 @@ for(var category in apps){
 }
 
 content.append(result);
+
+$("div.app").popup({
+    delay: 600
+});
 
 
 $(".app a").on("click", function(){
