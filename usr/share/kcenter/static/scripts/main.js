@@ -12,31 +12,6 @@ if(typeof debug == 'undefined' || !debug){
     })();
 }
 
-// Show loader to click on app
-var appBind = function(){
-
-    $(".app a").on("click", function(){
-
-        // get app to execute
-        var exec = $(this).data("exec");
-
-        // show loader
-        var loader = $(this).next();
-        loader.show();
-
-        // execute
-        var cmd = "kcmshell4 " + exec;
-        Pyjs.cmd(cmd);
-
-        // hide loader
-        setTimeout(function(){
-            loader.hide();
-        }, 1000);
-
-    });
-
-}
-
 
 // element to add content
 var content = $("#main");
@@ -55,8 +30,8 @@ for(var category in apps){
     for(var item = 0; item < apps[category].length; item++){
         var app = apps[category][item];
 
-        result += '<div class="ui basic floated left segment app">' +
-                    '<a href="javascript:;" data-exec="' + app.filename + '">' +
+        result += '<div class="ui basic floated left segment app" data-content"' + app.comment + '">' +
+                    '<a href="javascript:;" data-execute="' + app.execute + '">' +
                         '<div class="icon">' +
                             '<img src="' + app.icon + '" class="ui image" />' +
                         '</div>' +
@@ -71,4 +46,25 @@ for(var category in apps){
 }
 
 content.append(result);
-appBind();
+
+
+$(".app a").on("click", function(){
+
+    // elements
+    var elem = $(this);
+    var execute = elem.data("execute");
+    var body = $("body");
+
+    body.addClass("load");
+    elem.addClass("load");
+
+    // execute
+    Pyjs.cmd(execute);
+
+    // hide loader
+    setTimeout(function(){
+        body.removeClass("load");
+        elem.removeClass("load");
+    }, 2000);
+
+});

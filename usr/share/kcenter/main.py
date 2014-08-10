@@ -116,5 +116,3 @@ if __name__ == "__main__":
 
     ### Execute before quit ###
     sys.exit(ret)
-
-    print(web.windowState())

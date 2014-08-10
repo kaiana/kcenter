@@ -11,18 +11,22 @@ from collections import OrderedDict
 # get translations
 gettext.install("kcenter", "/usr/share/locale/kcenter")
 
-
 def getservices():
 
-    # get list of desktop files
+    # get list of desktop files for kde
     command = "grep -l kcmshell4 /usr/share/kde4/services/*.desktop"
     files = subprocess.getoutput(command).splitlines()
+
+    # get list of desktop files for big
+    command = "ls -d -1 " + os.getcwd() + "/includes/apps/*.desktop"
+    files += subprocess.getoutput(command).splitlines()
 
     # get current theme
     command = "kreadconfig --group 'Icons' --key 'Theme'"
     theme = subprocess.getoutput(command)
 
-    services = {}
+    # output
+    output = {}
 
     # Map category
     category_types = {
@@ -62,43 +66,44 @@ def getservices():
         filename = os.path.splitext(os.path.basename(file))[0]
 
         # fix error on get icon path
-
         if icon == "None":
-            icon = os.getcwd() + "/static/images/applications.png"
-            print(icon)
+            icon = str(getIconPath("preferences-system", theme=theme, size=32))
 
         # get categories from file
         file_categories = entry.getCategories()
 
-        # get category reference kde
-        category = None
+        # get category
         for elem in file_categories:
-                category = elem
+            category = elem
 
-        # get current category from file
-        try:
+        # define to execute
+        if "/usr/share/kde4" not in file:
+            execute = entry.getExec()
+            category = _(category)
+        else:
+            execute = "kcmshell4 " + str(filename)
 
-            if category is None:
-                raise Exception()
-
-            category = category_types[category]
-
-        except:
-            category = _("Others Configurations")
+            # get current category from file
+            try:
+                if category is None:
+                    raise Exception()
+                category = category_types[category]
+            except:
+                category = _("Others Configurations")
 
         # fill array service
-        if category not in services:
-            services[category] = []
+        if category not in output:
+            output[category] = []
 
-        services[category].append({
-            "filename": filename,
+        output[category].append({
+            "execute": execute,
             "comment": comment,
             "icon": icon,
             "name": name
         })
 
-    services = OrderedDict(sorted(services.items()))
-    return services
+    output = OrderedDict(sorted(output.items()))
+    return output
 
 
 #print(getservices())
