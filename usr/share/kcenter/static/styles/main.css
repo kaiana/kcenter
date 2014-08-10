@@ -19,3 +19,5 @@ body { background-color: #eee; }
 .app a { text-decoration: none important; }
 
 .app a .name { color: #444; font-family: ubuntu; font-size: 14px; }
+
+#search { width: 100% !important; text-align: center !important; margin-bottom: 20px !important; }

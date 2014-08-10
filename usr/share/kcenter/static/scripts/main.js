@@ -14,7 +14,7 @@ if(typeof debug == 'undefined' || !debug){
 
 
 // element to add content
-var content = $("#main");
+var content = $("#content");
 
 // get apps
 var data = Pyjs.getApps();
@@ -47,11 +47,13 @@ for(var category in apps){
 
 content.append(result);
 
+// tooltip
 $("div.app").popup({
-    delay: 600
+    delay: 200,
+    duration: 100
 });
 
-
+// launcher
 $(".app a").on("click", function(){
 
     // elements
@@ -71,4 +73,30 @@ $(".app a").on("click", function(){
         elem.removeClass("load");
     }, 2000);
 
+});
+
+// search
+var apps = $(".app");
+$("#search input").on("input", function(e){
+    var elem = $(this);
+    if(elem.val() == ""){
+        apps.show();
+    }
+    else{
+        apps.each(function(){
+            if($(this).data("content").toLowerCase().indexOf(elem.val().toLowerCase()) != -1 || $(this).find("a").data("execute").toLowerCase().indexOf(elem.val().toLowerCase()) != -1 || $(this).find("div.name").text().toLowerCase().indexOf(elem.val().toLowerCase()) != -1){
+                $(this).show();
+            }
+            else{
+                $(this).hide();
+            }
+            var category = $(this).parent();
+            if(category.find(".app:visible").length > 0){
+                category.show();
+            }
+            else{
+                category.hide();
+            }
+        });
+    }
 });

@@ -81,6 +81,10 @@ def getservices():
             execute = entry.getExec()
             category = _(category)
         else:
+
+            if "kcm_akonadi" in filename:
+                continue
+
             execute = "kcmshell4 " + str(filename)
 
             # get current category from file
@@ -104,7 +108,3 @@ def getservices():
 
     output = OrderedDict(sorted(output.items()))
     return output
-
-
-#print(getservices())
-#getservices()
