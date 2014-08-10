@@ -84,19 +84,24 @@ $("#search input").on("input", function(e){
     }
     else{
         apps.each(function(){
+
+            var category = $(this).parent();
+
             if($(this).data("content").toLowerCase().indexOf(elem.val().toLowerCase()) != -1 || $(this).find("a").data("execute").toLowerCase().indexOf(elem.val().toLowerCase()) != -1 || $(this).find("div.name").text().toLowerCase().indexOf(elem.val().toLowerCase()) != -1){
                 $(this).show();
+                category.show();
             }
             else{
                 $(this).hide();
             }
-            var category = $(this).parent();
+
             if(category.find(".app:visible").length > 0){
                 category.show();
             }
             else{
                 category.hide();
             }
+
         });
     }
 });
