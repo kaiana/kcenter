@@ -48,6 +48,10 @@ def getservices():
         "X-KDE-information": _("Informations of System")
     }
 
+
+    # remove files
+    apps_remove = open(os.getcwd() + "/conf/exclude.conf").read()
+
     # get informations from files
     for file in files:
 
@@ -82,7 +86,8 @@ def getservices():
             category = _(category)
         else:
 
-            if "kcm_akonadi" in filename:
+            # remove applications
+            if filename in apps_remove:
                 continue
 
             execute = "kcmshell4 " + str(filename)

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Akonadi
+Comment=Akonadi Configurations
+Comment[es]=Configuraciones de akonadi
+Comment[pt_BR]=Configurações do akonadi
+Exec=kcmshell4 --icon akonadi kcm_akonadi kcm_akonadi_resources kcm_akonadi_server
+Icon=akonadi
+Categories=System
