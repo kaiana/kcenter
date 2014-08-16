@@ -5,7 +5,7 @@ a { outline: 0 !important; }
 /* containers */
 body { background-color: #eee; margin: 0; padding: 0; }
     #main { margin: 0; padding: 0; }
-        #content { margin: 5px 20px; }
+        #content { margin: 56px 20px; }
 
 /* blocos de aplicativos */
 .app { padding: 5px !important; width: 150px !important; height: 80px !important; text-align: center !important; }
@@ -18,7 +18,7 @@ body { background-color: #eee; margin: 0; padding: 0; }
 
 /* outros */
 .load { cursor:wait; }
-.ui.menu { margin-bottom: 16px !important; background-color: #eee; }
+.ui.menu { margin-bottom: 16px !important; background-color: #eee; position: fixed; z-index: 999; width: 100%; top: 0; left: 0; }
     .ui.menu .right.menu { width: 50% !important; }
     .ui.menu .right.menu .item { width: 100% !important; }
     .ui.menu .right.menu .item input { width: 100% !important; }
