@@ -1,23 +1,24 @@
+/* regras gerais */
 * { font-family: Ubuntu; }
-
 a { outline: 0 !important; }
 
-body { background-color: #eee; }
+/* containers */
+body { background-color: #eee; margin: 0; padding: 0; }
+    #main { margin: 0; padding: 0; }
+        #content { margin: 5px 20px; }
 
-#main { margin: 25px 10px; }
-
+/* blocos de aplicativos */
 .app { padding: 5px !important; width: 150px !important; height: 80px !important; text-align: center !important; }
-
-.app .icon img { display: block; margin-left: auto; margin-right: auto; height: 32px; width: 32px; }
-
-.app .ui.dimmer { display: none; }
-
 .app:hover { box-shadow: 0 0 10px #ccc !important; border-radius: 10px !important; }
+    .app .icon img { display: block; margin-left: auto; margin-right: auto; height: 32px; width: 32px; }
+    .app .ui.dimmer { display: none; }
+    .app a { text-decoration: none important; }
+        .app a .name { color: #444; font-family: ubuntu; font-size: 14px; }
 
+
+/* outros */
 .load { cursor:wait; }
-
-.app a { text-decoration: none important; }
-
-.app a .name { color: #444; font-family: ubuntu; font-size: 14px; }
-
-#search { width: 100% !important; text-align: center !important; margin-bottom: 20px !important; }
+.ui.menu { margin-bottom: 16px !important; background-color: #eee; }
+    .ui.menu .right.menu { width: 50% !important; }
+    .ui.menu .right.menu .item { width: 100% !important; }
+    .ui.menu .right.menu .item input { width: 100% !important; }

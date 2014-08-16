@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Shortcuts and gestures
+Name[es]=Atajos y gestos
+Name[pt_BR]=Atalhos e gestos
+Comment=Keyboard shortcuts and gestures
+Comment[es]=Atajos de teclado y gestos
+Comment[pt_BR]=Atalhos de teclado e gestos
+Exec=kcmshell4 --icon preferences-system keys khotkeys standard_actions
+Icon=preferences-system
+Categories=Desktop

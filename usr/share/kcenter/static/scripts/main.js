@@ -13,6 +13,29 @@ if(typeof debug == 'undefined' || !debug){
 }
 
 
+function stringSearch(str) {
+     var rExps=[
+         {re:/[\xC0-\xC6]/g, ch:'A'},
+         {re:/[\xE0-\xE6]/g, ch:'a'},
+         {re:/[\xC8-\xCB]/g, ch:'E'},
+         {re:/[\xE8-\xEB]/g, ch:'e'},
+         {re:/[\xCC-\xCF]/g, ch:'I'},
+         {re:/[\xEC-\xEF]/g, ch:'i'},
+         {re:/[\xD2-\xD6]/g, ch:'O'},
+         {re:/[\xF2-\xF6]/g, ch:'o'},
+         {re:/[\xD9-\xDC]/g, ch:'U'},
+         {re:/[\xF9-\xFC]/g, ch:'u'},
+         {re:/[\xD1]/g, ch:'N'},
+         {re:/[\xF1]/g, ch:'n'}
+     ];
+
+     for(var i=0, len=rExps.length; i<len; i++)
+         str=str.replace(rExps[i].re, rExps[i].ch);
+
+     return str.toLowerCase();
+}
+
+
 // element to add content
 var content = $("#content");
 
@@ -77,17 +100,20 @@ $(".app a").on("click", function(){
 
 // search
 var apps = $(".app");
-$("#search input").on("input", function(e){
+$("#search").on("input", function(e){
     var elem = $(this);
-    if(elem.val() == ""){
-        apps.show();
+    if(elem.val().length == 0){
+        apps.show().parent().show();
     }
     else{
         apps.each(function(){
 
             var category = $(this).parent();
+            var sContent = stringSearch($(this).data("content"));
+            var sSearch = stringSearch(elem.val().trim());
+            var sName = stringSearch($(this).find("div.name").text());
 
-            if($(this).data("content").toLowerCase().indexOf(elem.val().toLowerCase()) != -1 || $(this).find("a").data("execute").toLowerCase().indexOf(elem.val().toLowerCase()) != -1 || $(this).find("div.name").text().toLowerCase().indexOf(elem.val().toLowerCase()) != -1){
+            if(sContent.indexOf(sSearch) != -1 || sName.indexOf(sSearch) != -1){
                 $(this).show();
                 category.show();
             }

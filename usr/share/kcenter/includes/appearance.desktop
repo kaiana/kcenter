@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Appearance of applications
+Name[es]=Apariencia de las aplicaciones
+Name[pt_BR]=Aparência dos aplicativos
+Comment=Configure appearance of applications
+Comment[es]=Define la apariencia de las aplicaciones
+Comment[pt_BR]=Configura a aparência dos aplicativos
+Exec=kcmshell4 --icon preferences-desktop-theme style colors icons fonts
+Icon=preferences-desktop-theme
+Categories=Look and Feel

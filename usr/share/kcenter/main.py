@@ -11,7 +11,7 @@ from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import QUrl
 from PyQt5.QtCore import QSize
 from xdg.IconTheme import getIconPath
-from utils.pyjs import Pyjs
+from python.pyjs import Pyjs
 from configparser import ConfigParser
 
 # get translations
@@ -89,7 +89,7 @@ if __name__ == "__main__":
     # Html and js
     Pyjs = Pyjs()
     Pyjs.debug = debug
-    html = QUrl("file://" + os.getcwd() + "/index.html")
+    html = QUrl("file://" + os.getcwd() + "/static/index.html")
 
     # Load html and js
     web.load(html)

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from PyQt5.QtCore import QObject, pyqtSlot
-from utils import kinfoservices
+from python import kinfoservices
 import json
 import subprocess
 import os
