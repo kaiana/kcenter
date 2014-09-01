@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Bluetooth
+Comment=Bluetooth Configurations
+Comment[es]=Configuracione del bluetooth
+Comment[pt_BR]=Configurações de bluetooth
+Exec=kcmshell4 --icon preferences-system-bluetooth bluedeviladapters bluedevildevices bluedeviltransfer
+Icon=preferences-system-bluetooth
+Categories=Network and Connectivity

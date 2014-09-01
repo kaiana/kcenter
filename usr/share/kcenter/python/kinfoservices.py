@@ -14,11 +14,11 @@ gettext.install("kcenter", "/usr/share/locale/kcenter")
 
 def getservices():
 
-    # get list of desktop files for kde
+    # get list of desktop files from kde
     command = "grep -l kcmshell4 /usr/share/kde4/services/*.desktop"
     files = subprocess.getoutput(command).splitlines()
 
-    # get list of desktop files for big
+    # get list of desktop files from big
     command = "ls -d -1 " + os.getcwd() + "/includes/*.desktop"
     files += subprocess.getoutput(command).splitlines()
 
@@ -29,7 +29,7 @@ def getservices():
     # output
     output = {}
 
-    # Map category
+    # Map categories
     category_types = {
         "X-KDE-settings-accessibility": _("DESKTOP"),
         "X-KDE-settings-components": _("DESKTOP"),
@@ -76,43 +76,40 @@ def getservices():
         if icon == "None":
             icon = str(getIconPath("preferences-system", theme=theme, size=32))
 
-        # check recategorize
-        regex=re.compile(filename + "=*")
-        #result=[m.group(0) for l in apps_category for m in [regex.search(l)] if m]
-        for line in apps_category:
-            if regex.search(line):
-                category = line.split("=")[1]
+        # get all categories from file
+        file_categories = entry.getCategories()
 
-        if category is None:
-            # get categories from file
-            file_categories = entry.getCategories()
+        # use last category
+        for elem in file_categories:
+            category = elem
 
-            # get category
-            for elem in file_categories:
-                category = elem
+        # big applications
+        if "/usr/share/kde4" not in file:
+            execute = entry.getExec()
+            category = _(category)
 
-            #if filename == 'icons':
-            #    print(file)
+        # kde applications
+        else:
+            # remove applications
+            if filename in apps_remove:
+                continue
 
-            # define to execute
-            if "/usr/share/kde4" not in file:
-                execute = entry.getExec()
-                category = _(category)
-            else:
+            execute = "kcmshell4 " + str(filename)
 
-                # remove applications
-                if filename in apps_remove:
-                    continue
+            # get category from file
+            try:
+                if category is None:
+                    raise Exception()
+                category = category_types[category]
+            except:
+                category = _("Others Configurations")
 
-                execute = "kcmshell4 " + str(filename)
+            # check recategorize
+            regex=re.compile(filename + "=*")
+            for line in apps_category:
+                if regex.search(line):
+                    category = line.split("=")[1]
 
-                # get current category from file
-                try:
-                    if category is None:
-                        raise Exception()
-                    category = category_types[category]
-                except:
-                    category = _("Others Configurations")
 
         # convert to upper
         category = category.upper()
