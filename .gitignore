@@ -5,3 +5,5 @@
 /app.py
 /.settings
 *.deb
+.project
+.pydevproject
