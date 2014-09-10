@@ -10,7 +10,9 @@ from collections import OrderedDict
 import re
 
 # get translations
-gettext.install("kcenter", "/usr/share/locale/kcenter")
+gettext.bindtextdomain('kcenter', os.getcwd() + "/../locale")
+gettext.textdomain('kcenter')
+_ = gettext.gettext
 
 def getservices():
 
@@ -86,7 +88,7 @@ def getservices():
         # big applications
         if "/usr/share/kde4" not in file:
             execute = entry.getExec()
-            category = _(category)
+            category = _(category.upper())
 
         # kde applications
         else:
@@ -102,13 +104,13 @@ def getservices():
                     raise Exception()
                 category = category_types[category]
             except:
-                category = _("Others Configurations")
+                category = _("OTHERS CONFIGURATIONS")
 
             # check recategorize
             regex=re.compile(filename + "=*")
             for line in apps_category:
                 if regex.search(line):
-                    category = line.split("=")[1]
+                    category = _(line.split("=")[1].upper())
 
 
         # convert to upper

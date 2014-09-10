@@ -1,0 +1,63 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-09-06 10:27-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: usr/share/kcenter/main.py:31
+msgid "Kaiana Control Panel"
+msgstr ""
+
+#: usr/share/kcenter/python/kinfoservices.py:32
+#: usr/share/kcenter/python/kinfoservices.py:33
+#: usr/share/kcenter/python/kinfoservices.py:34
+msgid "DESKTOP"
+msgstr ""
+
+#: usr/share/kcenter/python/kinfoservices.py:35
+msgid "LOOK AND FEEL"
+msgstr ""
+
+#: usr/share/kcenter/python/kinfoservices.py:36
+#: usr/share/kcenter/python/kinfoservices.py:37
+#: usr/share/kcenter/python/kinfoservices.py:44
+msgid "NETWORK AND CONNECTIVITY"
+msgstr ""
+
+#: usr/share/kcenter/python/kinfoservices.py:38
+#: usr/share/kcenter/python/kinfoservices.py:39
+#: usr/share/kcenter/python/kinfoservices.py:42
+msgid "HARDWARE"
+msgstr ""
+
+#: usr/share/kcenter/python/kinfoservices.py:40
+#: usr/share/kcenter/python/kinfoservices.py:43
+#: usr/share/kcenter/python/kinfoservices.py:45
+#: usr/share/kcenter/python/kinfoservices.py:46
+msgid "SYSTEM"
+msgstr ""
+
+#: usr/share/kcenter/python/kinfoservices.py:41
+msgid "SECURITY"
+msgstr ""
+
+#: usr/share/kcenter/python/kinfoservices.py:47
+msgid "INFORMATIONS OF SYSTEM"
+msgstr ""
+
+#: usr/share/kcenter/python/kinfoservices.py:103
+msgid "OTHERS CONFIGURATIONS"
+msgstr ""

@@ -15,7 +15,9 @@ from python.pyjs import Pyjs
 from configparser import ConfigParser
 
 # get translations
-gettext.install("kcenter", "/usr/share/locale/kcenter")
+gettext.bindtextdomain('kcenter', os.getcwd() + "/../locale")
+gettext.textdomain('kcenter')
+_ = gettext.gettext
 
 if __name__ == "__main__":
 

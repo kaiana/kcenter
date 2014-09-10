@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=Control Panel
+Name[pt_BR]=Painel de controle
+Name[es]=Panel de control
+Comment=Configure your system
+Comment[pt_BR]=Configurar seu sistema
+Comment[es]=Configure su sistema
+Exec=kcenter
+Icon=preferences-system
+Terminal=false
+Type=Application
+Categories=Application;System;Settings

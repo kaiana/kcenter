@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Power Management
+Name[es]=Gestión de energía
+Name[pt_BR]=Gerenciamento de energia
+Comment=Configuring the power consumption
+Comment[es]=Configuración del consumo de energía
+Comment[pt_BR]=Configurar o consumo de energia
+Exec=kcmshell4 --icon preferences-system-power-management powerdevilprofilesconfig powerdevilglobalconfig
+Icon=preferences-system-power-management
+Categories=Hardware

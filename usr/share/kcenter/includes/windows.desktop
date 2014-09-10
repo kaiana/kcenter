@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Windows
+Name[es]=Ventanas
+Name[pt_BR]=Janelas
+Comment=Windows settings
+Comment[es]=a configuración de Ventanas
+Comment[pt_BR]=Configurações de janelas
+Exec=kcmshell4 --icon preferences-system-windows kwinoptions kwinactions kwinadvanced kwinfocus kwinmoving kwinrules kwinscreenedges kwintabbox
+Icon=preferences-system-windows
+Categories=Desktop

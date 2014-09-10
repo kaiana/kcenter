@@ -7,7 +7,7 @@ if(typeof debug == 'undefined' || !debug){
         evt.preventDefault();
       };
 
-      myElement = document.querySelector('body');
+      myElement = document.querySelector('html');
       myElement.addEventListener('contextmenu', blockContextMenu);
     })();
 }

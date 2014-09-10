@@ -2,5 +2,6 @@ Package: kcenter
 Version: 0.0.1
 Architecture: all
 Maintainer: Rafael Neri <rafepel@gmail.com>
+Depends: python3-xdg, python3-pyqt5, python3-pyqt5.qtwebkit 
 Priority: optional
 Description: Control Panel for configure your system.
